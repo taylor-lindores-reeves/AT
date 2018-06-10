@@ -1,0 +1,28 @@
+/*
+Theme Name: Taylors
+Theme URI: blog.io
+Author: Taylor Lindores-Reeves
+Author URI: blog.io
+Description: Taylors Paradigm uses bootstrap to bring his website to life.
+Version: 1.3
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: taylors
+Tags: one-column, two-columns, right-sidebar, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+*/
+
+/* 3rd party packages */
+
+/* SASS and Global'ish Stuff */
+@import "base/variables";
+@import "base/baseline";
+@import "base/mixins";
+@import "base/utility-classes";
+
+/* BEM Blocks */
+@import "modules/site-header";
+@import "modules/site-footer";
+@import "modules/login";
+@import "modules/btn";
+@import "modules/page-banner";
+@import "modules/generic-content";
