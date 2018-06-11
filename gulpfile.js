@@ -3,6 +3,9 @@ var gulp = require("gulp"),
   webpack = require("webpack"),
   browserSync = require("browser-sync").create(),
   postcss = require("gulp-postcss"),
+  concat = require("gulp-concat"),
+  cleanCss = require("gulp-clean-css"),
+  minify = require("gulp-minify"),
   rgba = require("postcss-hexrgba"),
   autoprefixer = require("autoprefixer"),
   cssvars = require("postcss-simple-vars"),
@@ -25,6 +28,9 @@ gulp.task("styles", function() {
         autoprefixer
       ])
     )
+    .pipe(concat("style.css"))
+    .pipe(minify())
+    .pipe(cleanCss())
     .pipe(gulp.dest(settings.themeLocation));
 });
 
@@ -42,14 +48,16 @@ gulp.task("scripts", function(callback) {
 gulp.task("watch", function() {
   browserSync.init({
     notify: false,
-    open: false,
+    ghostMode: false,
     proxy: "localhost:8000"
   });
 
   gulp.watch("./**/*.php", function() {
     browserSync.reload();
   });
-  gulp.watch(settings.themeLocation + "css/**/*.css", ["waitForStyles"]);
+  gulp
+    .watch(settings.themeLocation + "css/**/*.css", ["styles"])
+    .on("change", browserSync.reload);
   gulp.watch(
     [
       settings.themeLocation + "js/modules/*.js",
@@ -57,12 +65,6 @@ gulp.task("watch", function() {
     ],
     ["waitForScripts"]
   );
-});
-
-gulp.task("waitForStyles", ["styles"], function() {
-  return gulp
-    .src(settings.themeLocation + "style.css")
-    .pipe(browserSync.stream());
 });
 
 gulp.task("waitForScripts", ["scripts"], function() {

@@ -11,7 +11,7 @@
 </head>
 <body <?php body_class() ?>>
 <header class="site-header">
-    <div class="container">
+    <div class="generic-content container">
         <h1>Header</h1>
     </div>
 </header>

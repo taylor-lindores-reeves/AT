@@ -7,4 +7,3 @@ import Logger from "./modules/Logger";
 const Map = new GoogleMap();
 
 new Logger({ a: "Hey", b: "Cunt" });
-console.log($);

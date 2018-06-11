@@ -3,7 +3,7 @@ const path = require("path"),
 
 module.exports = {
   entry: {
-    App: settings.themeLocation + "js/scripts.js"
+    main: settings.themeLocation + "js/scripts.js"
   },
   mode: "development",
   devtool: "cheap-module-source-map",
@@ -19,7 +19,12 @@ module.exports = {
           {
             loader: "babel-loader",
             options: {
-              presets: ["env"]
+              presets: [
+                [
+                  "env",
+                  { targets: { browsers: ["last 2 versions"] }, debug: true }
+                ]
+              ]
             }
           }
         ],
